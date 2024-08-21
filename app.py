@@ -181,7 +181,7 @@ def show_correlation_heatmap():
     corr_matrix = df.corr()
     
     # Plot the heatmap
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(7, 7))
     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5)
     
     # Save the heatmap as an image
