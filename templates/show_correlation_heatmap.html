@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Heatmap</title>
+</head>
+<body>
+    <h1>Correlation Heatmap and Top Features</h1>
+    
+    <h2>Correlation Heatmap</h2>
+    <img src="{{ heatmap_url }}" alt="Correlation Heatmap">
+    
+    <h2>Top Features Correlation with Target</h2>
+    {{ corr_target_html|safe }}
+    
+
+    <form action="{{ url_for('show_box_plots') }}" method="get">
+        <button type="submit" >View Box Plots of Top 3 Features</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Columns to Drop</title>
+</head>
+<body>
+    <h1>Select Columns to Drop and Specify Target Column</h1>
+    
+    <form action="{{ url_for('select_columns_to_drop') }}" method="post">
+        <h2>Columns to Drop</h2>
+        {% for column in columns %}
+            <input type="checkbox" name="drop_columns" value="{{ column }}"> {{ column }}<br>
+        {% endfor %}
+        
+        <h2>Target Column</h2>
+        <select name="target_column">
+            <option value="">Select Target Column</option>
+            {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select>
+        
+        <br><br>
+        <input type="submit" value="Next">
+    </form>
+</body>
+</html>

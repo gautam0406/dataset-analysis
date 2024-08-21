@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Columns to Encode</title>
+</head>
+<body>
+    <h1>Select Columns to Encode</h1>
+    <form action="{{ url_for('apply_encoding') }}" method="POST">
+        <h2>Ordinal Encoding</h2>
+        {% for column in columns %}
+            <div>
+                <input type="checkbox" name="ordinal_columns" value="{{ column }}">
+                <label>{{ column }}</label>
+            </div>
+        {% endfor %}
+        
+        <h2>OneHot Encoding</h2>
+        {% for column in columns %}
+            <div>
+                <input type="checkbox" name="onehot_columns" value="{{ column }}">
+                <label>{{ column }}</label>
+            </div>
+        {% endfor %}
+        
+        <button type="submit">Apply Encoding</button>
+    </form>
+</body>
+</html>

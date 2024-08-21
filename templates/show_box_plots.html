@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Plots</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Box Plots of Top Features</h1>
+    
+    <img src="{{ boxplot_url }}" alt="Box Plots of Top 3 Features">
+    
+    <h2>Select Columns to Remove Outliers</h2>
+    
+    <form action="{{ url_for('remove_outliers') }}" method="post">
+        <fieldset>
+            <legend>Select columns:</legend>
+            {% for feature in top_features %}
+                <div>
+                    <input type="checkbox" id="{{ feature }}" name="columns_to_remove" value="{{ feature }}">
+                    <label for="{{ feature }}">{{ feature }}</label>
+                </div>
+            {% endfor %}
+        </fieldset>
+        <br>
+        <input type="submit" value="Remove Outliers">
+    </form>
+    
+    <h2>Data Preview</h2>
+    <div>
+        {{ df_html|safe }}
+    </div>
+    
+    <a href="{{ url_for('dataset_info') }}">Back to Dataset Info</a>
+</body>
+</html>

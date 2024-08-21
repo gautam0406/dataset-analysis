@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Information</title>
+</head>
+<body>
+    <h1>Dataset Information</h1>
+    <p><strong>File Path:</strong> {{ file_path }}</p>
+    <p><strong>Number of Rows:</strong> {{ shape[0] }}</p>
+    <p><strong>Number of Columns:</strong> {{ shape[1] }}</p>
+    <p><strong>Columns:</strong> {{ columns | join(', ') }}</p>
+    <p><strong>Duplicated Rows:</strong> {{ duplicates }}</p>
+    <p><strong>Missing Values (isnull):</strong> {{ isnull }}</p>
+    <p><strong>Missing Values (isna):</strong> {{ isna }}</p>
+    <h2>First 5 Rows of the Dataset</h2>
+    {{ head | safe }}
+    <form action="{{ url_for('select_columns_to_drop') }}">
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>
