@@ -227,7 +227,7 @@ def show_box_plots():
         top_features = corr_target.index[1:4]  # Exclude target column and take top 3 features
         
         # Plot box plots for the top 3 features
-        plt.figure(figsize=(12, 6))
+        plt.figure(figsize=(10, 3))
         for feature in top_features:
             plt.subplot(1, 3, top_features.get_loc(feature) + 1)
             sns.boxplot(x=df[feature])

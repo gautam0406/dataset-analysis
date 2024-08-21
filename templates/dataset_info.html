@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dataset Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Dataset Information</h1>
@@ -15,7 +16,9 @@
     <p><strong>Missing Values (isnull):</strong> {{ isnull }}</p>
     <p><strong>Missing Values (isna):</strong> {{ isna }}</p>
     <h2>First 5 Rows of the Dataset</h2>
+    <table>
     {{ head | safe }}
+    </table>
     <form action="{{ url_for('select_columns_to_drop') }}">
         <button type="submit">Next</button>
     </form>
