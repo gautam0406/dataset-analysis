@@ -155,7 +155,7 @@ def apply_encoding():
     
     # Apply OneHot Encoding
     if onehot_columns:
-        df = pd.get_dummies(df, columns=onehot_columns)
+        df = pd.get_dummies(df, columns=onehot_columns,drop_first=True)
     
     # Save the updated DataFrame back to the session file
     df.to_csv(file_path, index=False)
