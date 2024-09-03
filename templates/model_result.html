@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Model Results</title>
+</head>
+<body>
+    <h1>Model Training Results</h1>
+    <p>Test Size: {{ test_size }}</p>
+    <p>Random State: {{ random_state }}</p>
+    <p>Model Accuracy: {{ accuracy }}</p>
+    <p>Confusion Matrix: {{ matrix }}</p>
+</body>
+</html>

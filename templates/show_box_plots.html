@@ -32,6 +32,10 @@
        <table>{{ df_html|safe }}</table> 
     </div>
     
-    <a href="{{ url_for('dataset_info') }}">Back to Dataset Info</a>
+    <!-- <a href="{{ url_for('dataset_info') }}">Back to Dataset Info</a> -->
+
+    <form action="{{url_for('train_model')}}" method="post">
+        <input type="submit" value="Upload">
+    </form>
 </body>
 </html>

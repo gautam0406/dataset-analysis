@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import os
 import pandas as pd
-from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,confusion_matrix
+from sklearn.preprocessing import OrdinalEncoder
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -250,8 +253,6 @@ def show_box_plots():
                                boxplot_url=url_for('static', filename='box_plots.png'),
                                df_html=df_html,
                                top_features=top_features)
-    
-    return redirect(url_for('dataset_info'))
 
 
 
@@ -291,7 +292,36 @@ def remove_outliers():
     # Redirect to show_box_plots to display the updated box plots
     return redirect(url_for('show_box_plots'))
 
+@app.route('/train_model', methods=['POST','GET'])
+def train_model():
+    if request.method=='POST':
+        file_path = session.get('file_path')
+        target_column = session.get('target_column')
+    
+        if not file_path or not os.path.exists(file_path):
+            return redirect(url_for('welcome'))
+    
+        df = pd.read_csv(file_path)
+        X = df.drop(columns=[target_column])
+        y = df[target_column]
 
+        test_size=0.2
+        random_state=42
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+
+        model=LogisticRegression()
+        model.fit(X_train,y_train)
+
+        y_pred=model.predict(X_test)
+
+        accuracy=accuracy_score(y_test,y_pred)
+        matrix=confusion_matrix(y_test,y_pred)
+
+        return render_template('model_result.html',
+                               test_size=test_size,
+                               random_state=random_state,
+                               accuracy=accuracy,
+                               matrix=matrix)
 
 
 
